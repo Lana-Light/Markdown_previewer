@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css?family=Chela+One|Dosis|Inconsolata");
+@mixin color($col,$back) {
+  color: $col;
+  background: $back;
+}
+@mixin block ($width,$height) {
+  width: $width;
+  height: $height;
+}
+body {
+  @include color(purple,#e0f7fa);
+  text-align: center;
+}
+li,
+pre,
+blockquote {
+  text-align: left;
+}
+code {
+  @include color(#00b0ff,white);
+  font-family: Inconsolata, monospace;
+}
+img {
+  @include block(200px,auto);
+}
+section {
+  border-radius: 20px 20px 0 0;
+  z-index: 1;
+  margin-left: 7%;
+  width: 40%;
+  float: left;
+  box-shadow: 3px 5px 6px 2px black;
+}
+@media (max-width: 600px) {
+  section {
+    float: none;
+    width: 90%;
+    margin: 20px auto;
+  }
+}
+%text {
+  @include color(purple,#f3e5f5);
+  @include block(100%,200px);
+  overflow: scroll;
+  box-sizing: border-box;
+  border: purple thin solid;
+  font-size: 120%;
+  font-family: "Dosis", sans-serif;
+}
+.preview {
+  padding-left: 20px;
+  @extend %text;
+}
+textarea {
+  @extend %text;
+  resize: vertical;
+}
+.max-size {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 99%;
+  z-index: 2;
+  .max-text {
+    min-height: 600px;
+    @include block(100%,auto);
+  }
+}
+.heading {
+  clear: both;
+  height: 40px;
+  background: #ff80ab;
+  border: purple thin solid;
+  border-bottom: none;
+  border-radius: 20px 20px 0 0;
+}
+.h1,
+.h2 {
+  font-family: "Chela One", "Dosis", cursive;
+}
+.h2 {
+  float: left;
+  margin: 5px 10px;
+}
+%border {
+  font-family: "Inconsolata", monospace;
+  cursor: pointer;
+  outline: none;
+  border: purple thin solid;
+  border-radius: 20px;
+  padding: 3px 7px;
+  box-shadow: 1px 1px 2px 1px black;
+  display: block;
+  float: right;
+  margin: 8px 5px 0 10px;
+}
+button {
+  @include color(white,#9c27b0);
+  @extend %border;
+  &:hover {
+    background: #d500f9;
+  }
+  &:active {
+    @include color(#d500f9,#ffebee);
+    border: #d500f9 thin solid;
+    box-shadow: none;
+  }
+}
+select {
+  @include color(white,#9c27b0);
+  @extend %border;
+}
